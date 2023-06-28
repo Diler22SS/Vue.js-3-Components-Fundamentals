@@ -1,0 +1,64 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+</head>
+
+<body>
+
+  <div id="app" class="ui container">
+    <h1>Центр Уведомлений</h1>
+
+    <notification-message type="error" header="О НЕЕЕЕЕТ">Вы попали в ловушку из ядовитой паутины.</notification-message>
+    <notification-message type="info" header="Подсказка">Чтобы выйди из ловушки, нужно вызвать дождь.</notification-message>
+    <notification-message type="success" header="Отлично!">К счастью вы живете в Маусинрам, Индия, где часто идет дождь.</notification-message>
+    <notification-message type="warning" header="Запомни">Больше никогда не иди в лес в одиночку!</notification-message>
+    <notification-message></notification-message>
+
+  </div>
+
+  <!-- Template for Notification Message -->
+  <script type="text/x-template" id="notification-message-template">
+
+    <!-- Notification Message Markup -->
+    <!-- Types: info, warning, error, success -->
+    <div class="ui message" :class="type" v-if='!closed'>
+        <i class="close icon" @click="close"></i>
+        <div class="header">
+          {{ header }}
+        </div>
+        <slot></slot>
+      </div>
+
+  </script>
+
+  <!-- Import Vue.js -->
+  <script src="https://unpkg.com/vue@next"></script>
+  <!-- Your JavaScript Code :) -->
+
+  <script>
+    Vue.createApp({
+
+    })
+    .component('notification-message', {
+        template: '#notification-message-template',
+        props: {
+            type: {type: String, default: 'info'},
+            header: {type: String, default: 'Не очень важное уведомление'},
+        },
+        data() {
+            return {
+                closed: false,
+            }
+        },
+        methods: {
+            close() {
+                this.closed = !this.closed
+            }
+        }
+    })
+    .mount('#app')
+  </script>
+</body>
+
+</html> 
