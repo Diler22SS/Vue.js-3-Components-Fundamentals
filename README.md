@@ -1,2 +1,2 @@
 # components-fundamentals-Vue.js
-lessons about vuejs 3
+lessons about components vuejs 3
